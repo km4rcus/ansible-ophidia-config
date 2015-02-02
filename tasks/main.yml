@@ -1,0 +1,18 @@
+---
+- name: configure hosts
+  action: template src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
+
+- include: iptables.yml
+
+- include: slurm.yml
+  when: ophidia_node_type == 'server' or ophidia_node_type == 'compute'
+
+- include: server.yml
+  when: ophidia_node_type == 'server'
+
+- include: compute.yml
+  when: ophidia_node_type == 'compute'
+
+- include: io.yml
+  when: ophidia_node_type == 'io'
+
