@@ -3,7 +3,7 @@
 # See the slurm.conf man page for more information.
 #
 ControlMachine={{ hostvars[groups['ophidia_server'][0]].ansible_hostname }}
-ControlAddr={{ hostvars[groups['ophidia_server'][0]].ansible_default_ipv4.address }}
+ControlAddr={{ hostvars[groups['ophidia_server'][0]].ansible_eth1.ipv4.address }}
 #BackupController=
 #BackupAddr=
 #

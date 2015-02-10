@@ -1,6 +1,27 @@
 127.0.0.1	localhost
-{% for host in groups['all']|sort %}
+{% for host in groups['ophidia_server'] %}
+{% if host != 'localhost' %}
+{{ hostvars[host].ansible_eth1.ipv4.address }} {{ hostvars[host].ansible_fqdn }} {{ hostvars[host].ansible_hostname}}
+{% endif %}
+{% endfor %}
+{% if groups['ophidia_computes'] is defined %}
+{% for host in groups['ophidia_computes']|sort %}
 {% if host != 'localhost' %}
 {{ hostvars[host].ansible_default_ipv4.address }} {{ hostvars[host].ansible_fqdn }} {{ hostvars[host].ansible_hostname}}
 {% endif %}
 {% endfor %}
+{% endif %}
+{% if groups['ophidia_computes_ios'] is defined %}
+{% for host in groups['ophidia_computes_ios']|sort %}
+{% if host != 'localhost' %}
+{{ hostvars[host].ansible_default_ipv4.address }} {{ hostvars[host].ansible_fqdn }} {{ hostvars[host].ansible_hostname}}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if groups['ophidia_ios'] is defined %}
+{% for host in groups['ophidia_ios']|sort %}
+{% if host != 'localhost' %}
+{{ hostvars[host].ansible_default_ipv4.address }} {{ hostvars[host].ansible_fqdn }} {{ hostvars[host].ansible_hostname}}
+{% endif %}
+{% endfor %}
+{% endif %}
