@@ -22,3 +22,6 @@
   action: mount name=/usr/local/ophidia/share src={{hostvars[groups.ophidia_server[0]].ansible_hostname}}:/usr/local/ophidia/share fstype=nfs opts=rw,sync,nfsvers=3 state=mounted
   tags: ophidia_compute
 
+- name: mount data archive on compute nodes
+  action: mount name={{ data_mount_point }} src={{ data_server }}:{{ data_archive }} fstype=nfs opts=rw,sync,nfsvers=3 state=mounted
+  tags: ophidia_compute

@@ -9,3 +9,6 @@ ophidia_db_name: ophidia_db
 ophidia_dimdb_name: ophidia_dim
 ophidia_server_port: 11732
 mysql_root_password: p4ss
+data_mount_point: /archive
+data_server: nfs_server
+data_archive: /archive
